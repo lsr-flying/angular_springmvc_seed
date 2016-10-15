@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理-权限管理</title>
+</head>
+<body>
+    <div>
+        这是权限管理界面！
+        <hr>
+        自动绑定实例：<br>
+        <input ng-model="userName" />
+        <br>
+        {{userName||"visitor"}}!
+        <hr>
+        Factory实例：<br>
+        {{helloFactory}}
+        <hr>
+        Constant实例:<br>
+        {{helloConstant}}
+        <hr>
+        Filter实例:<br>
+        <input ng-model="rawData"/>
+        <br>
+        {{rawData||"no data"|helloFilter}}
+        <hr>
+        自定义directive:<br>
+            <hello-directive name="Tim" salary="salary"></hello-directive>
+        <hr>
+
+    </div>
+</body>
+</html>

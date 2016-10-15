@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html ng-app="appModule">
+	<head>
+		<title>网站首页</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!-- ==============================ace-template settings===================================== -->
+		<!-- basic styles -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/font-awesome-4.2.0.min.css" />
+		<!-- ace styles -->
+		<link rel="stylesheet" href="css/ace.min.css" />
+		<link rel="stylesheet" href="css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="css/ace-skins.min.css" />
+	</head>
+
+	<body ng-controller="appCtrl">
+		<div class="loadingContainer">
+			<div id="loadingIcon"/>
+		</div>
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="icon-leaf"></i>
+							LSR系统综合管理平台
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+
+						<li class="purple">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-bell-alt icon-animated-bell"></i>
+								<span class="badge badge-important">8</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+								<li class="dropdown-header">
+									<i class="icon-warning-sign"></i>
+									你有8个通知
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
+												New Comments
+											</span>
+											<span class="pull-right badge badge-info">+12</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="btn btn-xs btn-primary icon-user"></i>
+										Bob just signed up as an editor ...
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
+												New Orders
+											</span>
+											<span class="pull-right badge badge-success">+8</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
+												Followers
+											</span>
+											<span class="pull-right badge badge-info">+11</span>
+										</div>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										See all notifications
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="green">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-envelope icon-animated-vertical"></i>
+								<span class="badge badge-success">5</span>
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+								<li class="dropdown-header">
+									<i class="icon-envelope-alt"></i>
+									你有5 封短信
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Alex:</span>
+												Ciao sociis natoque penatibus et auctor ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>a moment ago</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Susan:</span>
+												Vestibulum id ligula porta felis euismod ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>20 minutes ago</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<img src="avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<span class="msg-body">
+											<span class="msg-title">
+												<span class="blue">Bob:</span>
+												Nullam quis risus eget urna mollis ornare ...
+											</span>
+
+											<span class="msg-time">
+												<i class="icon-time"></i>
+												<span>3:15 pm</span>
+											</span>
+										</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="inbox.html">
+										See all messages
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="avatars/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									系统用户
+									<small>(管理员)</small>
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="icon-cog"></i>
+										设置
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										用户信息
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a ng-click="logout()">
+										<i class="icon-off"></i>
+										注销
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+
+				<side-bar id="sidebar" class="sidebar" nav-items="navItems" item-click="showTab(menu)"></side-bar>
+
+				<div class="main-content">
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="tabTableNav">
+									<ul class="nav nav-tabs" id="viewTab">
+										<li ng-repeat = "tab in viewTabs track by $index" style="cursor:pointer" ng-click="selectTab($index)" ng-class="{'active':selectedTab==$index}">
+											<a data-toggle="tab" ng-click="setActiveTab($index)">
+												<span class="fa fa-refresh" aria-hidden="true" ng-click="refreshTab($index)" ng-if="selectedTab==$index" style="cursor:pointer" title="刷新"></span>
+												{{tab.tabName}}
+												<span class="fa fa-times" aria-hidden="true" ng-click="deleteTab($index)" ng-if="selectedTab==$index" style="cursor:pointer" title="关闭"></span>
+											</a>
+										</li>
+									</ul>
+									<div class="viewTab"></div>
+								</div>
+								<div ng-view/>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+
+				<div class="ace-settings-container" id="ace-settings-container">
+					<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+						<i class="icon-cog bigger-150" title="页面配置"></i>
+					</div>
+
+					<div class="ace-settings-box" id="ace-settings-box">
+						<div>
+							<div class="pull-left">
+								<select id="skin-colorpicker" class="hide">
+									<option data-skin="default" value="#438EB9">#438EB9</option>
+									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+								</select>
+							</div>
+							<span>&nbsp;选择界面肤色</span>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
+							<label class="lbl" for="ace-settings-navbar">&nbsp;固定头部</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
+							<label class="lbl" for="ace-settings-sidebar">&nbsp;固定滚动条</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
+							<label class="lbl" for="ace-settings-breadcrumbs">&nbsp;固定导航索引栏</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
+							<label class="lbl" for="ace-settings-rtl">&nbsp;右到左布局</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
+							<label class="lbl" for="ace-settings-add-container">&nbsp;内嵌网页</label>
+						</div>
+					</div>
+				</div><!-- /#ace-settings-container -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+
+		<script src='lib/jquery-2.0.3.min.js'>></script>
+		<script src="lib/bootstrap.min.js"></script>
+		<!-- page specific plugin styles -->
+		<script src="lib/angularjs/angular1.2.9.min.js"></script>
+		<script src="lib/angularjs/angular-route.min.js"></script>
+		<!-- page specific plugin scripts -->
+		<!-- ace scripts -->
+		<script src="lib/ace-elements.min.js"></script>
+		<script src="lib/ace.min.js"></script>
+		<!-- ace settings handler -->
+		<script src="lib/ace-extra.min.js"></script>
+
+		<script src="lib/spin.2.3.2.js"></script>
+		<script src="lib/layer/layer.js"></script>
+		<script src="lib/underscore-1.8.3-min.js"></script>
+		<!-- ======================================================================================= -->
+
+		<!--=========================custom javascript==============================-->
+		<script src="js/modules/appModule.js"></script>
+		<script src="js/config.js"></script>
+
+		<script src="js/controllers/appCtrl.js"></script>
+		<script src="js/controllers/authorizationMgtCtrl.js"></script>
+		<script src="js/controllers/userCenterCtrl.js"></script>
+		<script src="js/controllers/components/navBarMenuCtrl.js"></script>
+
+		<!--=========================routes==============================-->
+		<script src="js/routes.js"></script>
+
+		<!--=========================custom service==============================-->
+		<script src="js/services/customServices.js"></script>
+		<script src="js/services/customFactories.js"></script>
+
+		<!--=========================custom parameters==============================-->
+		<script src="js/parameters/constants.js"></script>
+		<script src="js/parameters/values.js"></script>
+
+		<!--=========================custom filters========================= =====-->
+		<script src="js/filters/customFilters.js"></script>
+
+		<!--=========================custom directives==============================-->
+		<script src="js/directives/customDirectives.js"></script>
+
+		<script>
+			//opts 可从网站在线制作
+			var opts = {
+				lines: 13, // 花瓣数目
+				length: 10, // 花瓣长度
+				width: 6, // 花瓣宽度
+				radius: 10, // 花瓣距中心半径
+				corners: 1, // 花瓣圆滑度 (0-1)
+				rotate: 0, // 花瓣旋转角度
+				direction: 1, // 花瓣旋转方向 1: 顺时针, -1: 逆时针
+				color: '#5882FA', // 花瓣颜色
+				speed: 1, // 花瓣旋转速度
+				trail: 60, // 花瓣旋转时的拖影(百分比)
+				shadow: false, // 花瓣是否显示阴影
+				hwaccel: false, //spinner 是否启用硬件加速及高速旋转
+				className: 'spinner', // spinner css 样式名称
+				zIndex: 2e9, // spinner的z轴 (默认是2000000000)
+				top: '50%', // spinner 相对父容器Top定位 单位 px
+				left: '50%'// spinner 相对父容器Left定位 单位 px
+			};
+			var spinner = new Spinner(opts);
+			var target=document.getElementById("loadingIcon");
+			//var target=$(".loadingIcon");
+			spinner.spin(target);
+			var t1 = window.setTimeout(function(){
+				spinner.spin();
+				$("#loadingIcon").remove();
+			},1000);
+		</script>
+
+	</body>
+</html>
