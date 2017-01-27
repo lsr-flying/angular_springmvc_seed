@@ -1,12 +1,12 @@
 <a href="{{item.href}}"
    ng-class="{'dropdown-toggle':item.hasChild}"
-   ng-click="itemClick({menu:{name:item.name,url:item.href,hasChild:item.hasChild}})">
+   ng-click="itemClick({menu:{id:item.id,name:item.name,url:item.href,hasChild:item.hasChild}})">
     <i class="{{item.icon}}"></i>
     <span class="menu-text">{{item.name}}</span>
     <b class="arrow icon-angle-down" ng-if="item.hasChild" ng-show="true"></b>
     <b class="arrow icon-angle-up" ng-if="item.hasChild" ng-show="false"></b>
 </a>
 <ul class="submenu" ng-if="item.hasChild">
-    <li ng-repeat="item in item.children" ng-include="'views/components/navBarItem.html'">
+    <li ng-repeat="item in item.children" ng-include="'views/components/navBarItem.html'" ng-class="{'active':item.selected}">
     </li>
 </ul>

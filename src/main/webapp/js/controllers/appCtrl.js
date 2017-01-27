@@ -9,37 +9,6 @@ appModule.controller("appCtrl",["$scope",'$window',function($scope,$window){
         {tabName:"help",tabUrl:"#userCenter"}
     ];
     $scope.selectedTab=1;
-    $scope.selectTab=function(index){
-        $scope.selectedTab=index;
-    };
-    $scope.setActiveTab=function(index){
-        $scope.tabUrl = $scope.viewTabs[index].tabUrl;
-        $window.location.href=$scope.tabUrl;
-    };
-    $scope.deleteTab=function(index){
-        $scope.viewTabs.splice(index,1);
-        if($scope.viewTabs.length==1){//当仅剩下主页tab时
-            $scope.selectTab(0);
-            var url=$scope.viewTabs[0].tabUrl;
-            $scope.tabUrl = $scope.viewTabs[0].tabUrl;
-            $window.location.href= url;//跳转到主页
-        }else{//当tabs中存在非主页的tab时
-            if($scope.viewTabs.length>index+1){//删除不为最右边的tab
-                $scope.selectTab(index);
-                var url=$scope.viewTabs[index].tabUrl;
-                $scope.tabUrl = $scope.viewTabs[index].tabUrl;
-                $window.location.href= url+'';//跳转
-            }else{//删除最右边的tab
-                $scope.selectTab(index-1);
-                var url=$scope.viewTabs[index-1].tabUrl;
-                $scope.tabUrl = $scope.viewTabs[index-1].tabUrl;
-                $window.location.href= url;//跳转
-            }
-        }
-    }
-
-    $scope.refreshTab=function(index){
-    };
 
     $scope.logout = function(){
         layer.confirm('您确认要退出系统？', {
@@ -68,6 +37,8 @@ appModule.controller("appCtrl",["$scope",'$window',function($scope,$window){
             return;
         }
 
+        $scope.curItemId=menu.id;
+
         var vt=$scope.viewTabs;
         var vtLen = vt.length;
         var isTabExist = false;
@@ -91,15 +62,18 @@ appModule.controller("appCtrl",["$scope",'$window',function($scope,$window){
 
     }
 
-    $scope.navItems = [{name:"用户中心",href:"#userCenter",icon:"icon-user",hasChild:false},
-        {name:"用户管理",href:"#",icon:"icon-desktop",hasChild:true,
-            children:[{name:"用户列表",icon:"icon-double-angle-right",href:"#authorizationMgt",hasChild:false},
-                {name:"权限管理",icon:"icon-double-angle-right",href:"#authorizationMgt",hasChild:false}]},
-        {name:"导航栏事例",href:"#",icon:"icon-search",hasChild:true,
-            children:[{name:"第一级菜单",icon:"icon-double-angle-right",href:"#",hasChild:true,
-                         children:[{name:"第二级菜单",icon:"icon-leaf",href:"#",hasChild:false},
-                             {name:"第二级结点",icon:"icon-pencil",href:"#",hasChild:false}]
+    $scope.navItems = [{id:1,name:"用户中心",href:"#userCenter",icon:"icon-user",hasChild:false},
+        {id:2,name:"用户管理",href:"#",icon:"icon-desktop",hasChild:true,
+            children:[{id:3,name:"用户列表",icon:"icon-double-angle-right",href:"#authorizationMgt",hasChild:false},
+                {id:4,name:"权限管理",icon:"icon-double-angle-right",href:"#test",hasChild:false}]},
+        {id:5,name:"导航栏事例",href:"#",icon:"icon-search",hasChild:true,
+            children:[{id:6,name:"第一级菜单",icon:"icon-double-angle-right",href:"#",hasChild:true,
+                         children:[{id:7,name:"第二级菜单",icon:"icon-leaf",href:"#",hasChild:false},
+                             {id:8,name:"第二级结点",icon:"icon-pencil",href:"#",hasChild:false}]
             }]
         }
     ];
+
+    $scope.notificationItems = [{type:"中奖",num:88},
+        {type:"吃饭",num:3}];
 }]);

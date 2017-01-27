@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div>
+    <div class="tabTableNav">
+        <ul class="nav nav-tabs" id="viewTab">
+            <li ng-repeat = "tab in tabItems track by $index" style="cursor:pointer" ng-click="selectTab($index)" ng-class="{'active':selectedTab==$index}">
+                <a data-toggle="tab" ng-click="setActiveTab($index)">
+                    <span class="fa fa-refresh" aria-hidden="true" ng-click="refreshTab($index)" ng-if="selectedTab==$index" style="cursor:pointer" title="刷新"></span>
+                    {{tab.tabName}}
+                    <span class="fa fa-times" aria-hidden="true" ng-click="deleteTab($index)" ng-if="selectedTab==$index" style="cursor:pointer" title="关闭"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="viewTab"></div>
+    </div>
+</div>

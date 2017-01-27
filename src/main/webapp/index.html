@@ -17,209 +17,9 @@
 	</head>
 
 	<body ng-controller="appCtrl">
-		<div class="loadingContainer">
-			<div id="loadingIcon"/>
-		</div>
-		<div class="navbar navbar-default" id="navbar">
-			<script type="text/javascript">
-				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
-			</script>
+		<div class="loadingContainer"><div id="loadingIcon"/></div>
 
-			<div class="navbar-container" id="navbar-container">
-				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-					<span class="sr-only">Toggle sidebar</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<div class="navbar-header pull-left">
-					<a href="#" class="navbar-brand">
-						<small>
-							<i class="icon-leaf"></i>
-							LSR系统综合管理平台
-						</small>
-					</a><!-- /.brand -->
-				</div><!-- /.navbar-header -->
-
-				<div class="navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
-
-						<li class="purple">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-bell-alt icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
-							</a>
-
-							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="icon-warning-sign"></i>
-									你有8个通知
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												New Comments
-											</span>
-											<span class="pull-right badge badge-info">+12</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										Bob just signed up as an editor ...
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												New Orders
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												Followers
-											</span>
-											<span class="pull-right badge badge-info">+11</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										See all notifications
-										<i class="icon-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="green">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
-							</a>
-
-							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="icon-envelope-alt"></i>
-									你有5 封短信
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Alex:</span>
-												Ciao sociis natoque penatibus et auctor ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>a moment ago</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Susan:</span>
-												Vestibulum id ligula porta felis euismod ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>20 minutes ago</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<img src="avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-										<span class="msg-body">
-											<span class="msg-title">
-												<span class="blue">Bob:</span>
-												Nullam quis risus eget urna mollis ornare ...
-											</span>
-
-											<span class="msg-time">
-												<i class="icon-time"></i>
-												<span>3:15 pm</span>
-											</span>
-										</span>
-									</a>
-								</li>
-
-								<li>
-									<a href="inbox.html">
-										See all messages
-										<i class="icon-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="light-blue">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="avatars/user.jpg" alt="Jason's Photo" />
-								<span class="user-info">
-									系统用户
-									<small>(管理员)</small>
-								</span>
-
-								<i class="icon-caret-down"></i>
-							</a>
-
-							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
-									<a href="#">
-										<i class="icon-cog"></i>
-										设置
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										用户信息
-									</a>
-								</li>
-
-								<li class="divider"></li>
-
-								<li>
-									<a ng-click="logout()">
-										<i class="icon-off"></i>
-										注销
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul><!-- /.ace-nav -->
-				</div><!-- /.navbar-header -->
-			</div><!-- /.container -->
-		</div>
+        <div ng-include="'views/components/navBarHeader.html'"></div>
 
 		<div class="main-container" id="main-container">
 			<script type="text/javascript">
@@ -228,27 +28,14 @@
 
 			<div class="main-container-inner">
 
-				<side-bar id="sidebar" class="sidebar" nav-items="navItems" item-click="showTab(menu)"></side-bar>
+				<side-bar id="sidebar" class="sidebar" nav-items="navItems"  item-click="showTab(menu)"></side-bar>
 
 				<div class="main-content">
 					<div class="page-content">
 						<div class="row">
 							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div class="tabTableNav">
-									<ul class="nav nav-tabs" id="viewTab">
-										<li ng-repeat = "tab in viewTabs track by $index" style="cursor:pointer" ng-click="selectTab($index)" ng-class="{'active':selectedTab==$index}">
-											<a data-toggle="tab" ng-click="setActiveTab($index)">
-												<span class="fa fa-refresh" aria-hidden="true" ng-click="refreshTab($index)" ng-if="selectedTab==$index" style="cursor:pointer" title="刷新"></span>
-												{{tab.tabName}}
-												<span class="fa fa-times" aria-hidden="true" ng-click="deleteTab($index)" ng-if="selectedTab==$index" style="cursor:pointer" title="关闭"></span>
-											</a>
-										</li>
-									</ul>
-									<div class="viewTab"></div>
-								</div>
+                                <view-tab tab-items="viewTabs" selected-tab="selectedTab"></view-tab>
 								<div ng-view/>
-								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
