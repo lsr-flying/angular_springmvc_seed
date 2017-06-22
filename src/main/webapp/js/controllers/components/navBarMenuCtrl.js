@@ -24,11 +24,11 @@ appModule.controller("navBarMenuCtrl",["$scope","$rootScope",function($scope,$ro
     }
 
     function recursiveActiveItems(currentPath,navItem){
-        if(_.isEqual(navItem.href,currentPath)){
+        if(_.isEqual(navItem.link,currentPath)){
             navItem.selected = true;
             return true;
         }else{
-            if(currentPath,navItem.hasChild){
+            if(!navItem.leaf){
                 var hasChildSelected = false;
                 for(var i=0;i<navItem.children.length;i++){
                     var childSelected = recursiveActiveItems(currentPath,navItem.children[i]);

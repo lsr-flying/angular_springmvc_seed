@@ -1,10 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div>
+    {{navOperationTypeText}}导航栏
+    <hr>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            名称
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="菜单名字" ng-model="navName" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            图标
+        </div>
+        <div class="col-md-9">
+            <span class="input-icon input-icon-right">
+                <input type="text" ng-model="navIcon" placeholder="use icon collection"/>
+                <i class="{{navIcon}}"></i>
+            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            链接
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="链接" ng-model="navLink" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            顺序
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="顺序" ng-model="navOrder" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            类型
+        </div>
+        <div class="col-md-9">
+            <select ng-model="menuType" ng-options="menuType.type_name for menuType in menuTypes"></select>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            启用状态
+        </div>
+        <div class="col-md-9">
+            <label>
+                <input class="ace ace-switch ace-switch-7" ng-model="menuDataStatus" ng-true-value="1" ng-false-value="0" type="checkbox" />
+                <span class="lbl"></span>
+            </label>
+        </div>
+    </div>
+
+    <div style="text-align: right">
+        <button type="button" class="btn btn-purple btn-sm" ng-click="sendCreateMenu()">
+            确认
+        </button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="closeThisDialog()">
+            取消
+        </button>
+    </div>
+</div>

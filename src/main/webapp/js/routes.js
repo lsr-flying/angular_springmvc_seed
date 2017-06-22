@@ -11,9 +11,15 @@ appModule.config(['$routeProvider',function($routeProvider){
             templateUrl: 'views/userCenterView.html',
             controller:'userCenterCtrl'
         }).
-        otherwise({
-            redirectTo: '/userCenter'
-        });
+        when('/userList', {
+            templateUrl: 'views/userListView.html',
+            controller:'userListCtrl'
+        })
+        .when('/navMangt', {
+            templateUrl: 'views/navMangtView.html',
+            controller:'navMangtCtrl'
+        })
+    ;
 }]);
 
 appModule.run(["$location","$rootScope",function( $location,$rootScope) {

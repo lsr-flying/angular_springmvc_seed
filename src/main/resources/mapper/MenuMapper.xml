@@ -2,21 +2,216 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="lsr.springmvc.dao.UserDAO">
-           
-         <insert id="insertUser" parameterType="User" keyProperty="id">
-         insert into user(  
-         state,
-         nickname) 
-         values 
-         (        
-         #{state},
-         #{nickname})
+<mapper namespace="lsr.springmvc.dao.MenuDAO">
+        <resultMap id="baseMenuMap" type="Menu">
+            <id           column="menu_id"        property="id"/>
+            <result       column="menu_name"      property="name"/>
+            <result       column="menu_link"      property="link"/>
+            <result       column="menu_icon"      property="icon"/>
+            <result       column="menu_type"      property="type"/>
+            <result       column="menu_order"     property="order"/>
+            <result       column="data_status"    property="dataStatus"/>
+            <result       column="menu_parent_id" property="parentId"/>
+            <result       column="created_by"     property="createdBy"/>
+            <result       column="updated_by"     property="updatedBy"/>
+            <result       column="created_time"   property="createdTime"/>
+            <result       column="updated_time"   property="updatedTime"/>
+        </resultMap>
+
+        <resultMap id="menuRecursiveMap" type="Menu" extends="baseMenuMap">
+            <collection     column="menu_id"          property="children"
+                            ofType="Menu" select="selectMenuChildrenById"/>
+        </resultMap>
+
+         <insert id="insertMenu" parameterType="Menu" keyProperty="id">
+             insert into menu(
+                 menu_id,
+                 menu_name,
+                 menu_link,
+                 menu_icon,
+                 menu_type,
+                 menu_order,
+                 menu_parent_id,
+                 data_status,
+                 created_by,
+                 updated_by,
+                 created_time,
+                 updated_time
+             )
+             values
+             (
+                 #{id},
+                 #{name},
+                 #{link},
+                 #{icon},
+                 #{type},
+                 #{order},
+                 #{parentId},
+                 #{dataStatus},
+                 #{createdBy},
+                 #{updatedBy},
+                 #{createdTime},
+                 #{updatedTime}
+             )
          </insert>
 
-        <select id="getUserList" parameterType="java.util.Map" resultType="User">
-            select id,state,nickname
-            from USER
-            where 1=1
+        <select id="getMenuRecursivelyByProperty" parameterType="java.util.Map" resultMap="menuRecursiveMap">
+            select
+            *
+            from MENU m
+            where
+            m.menu_id = #{id}
+        </select>
+
+    <select id="getMenuById" parameterType="java.util.Map" resultMap="baseMenuMap">
+        select
+        *
+        from MENU m
+        where
+        m.menu_id = #{id}
+    </select>
+
+        <select id="selectMenuChildrenById" parameterType="java.lang.String" resultMap="menuRecursiveMap">
+            SELECT
+            *
+            FROM MENU m
+            WHERE
+            m.menu_parent_id = #{id}
+            ORDER BY
+            m.menu_order ASC
+        </select>
+
+        <select id="getRecursiveMenuListByProperty" parameterType="java.util.Map" resultMap="menuRecursiveMap">
+            SELECT
+            *
+            FROM MENU m
+            WHERE
+            1=1
+            <if test="parentId != null">
+                AND m.menu_parent_id = #{parentId}
+            </if>
+            <if test="menuType != null">
+                AND m.menu_type = #{menuType}
+            </if>
+            AND
+            (
+            m.menu_parent_id is null or m.menu_parent_id =0
+            )
+            ORDER BY
+            m.menu_order asc
+        </select>
+
+        <select id="getMenuListByProperty" parameterType="java.util.Map" resultMap="baseMenuMap">
+            SELECT
+            *
+            FROM MENU m
+            WHERE
+            1=1
+            <if test="id !=null">
+                AND m.menu_id = #{id}
+            </if>
+            <if test="type !=null">
+                AND m.menu_type = #{type}
+            </if>
+            <if test="parentId !=null">
+                AND m.menu_parent_id = #{parentId}
+            </if>
+            <if test="order !=null">
+                AND m.menu_order = #{order}
+            </if>
+            ORDER BY
+                m.created_time desc
+        </select>
+
+        <delete  id="deleteMenuById" parameterType="java.lang.String">
+            DELETE
+            FROM MENU m
+            WHERE
+            m.menu_id = #{id}
+        </delete>
+
+        <delete id="deleteMenuByIdList">
+            DELETE
+            FROM MENU
+            WHERE
+            menu_id IN
+            <foreach collection="list" item="delId" open="(" close=")" separator=",">
+              #{delId}
+            </foreach>
+        </delete>
+
+        <update id="updateMenuById" parameterType="Menu">
+            UPDATE MENU m
+            <set>
+                <if test="name  != null">
+                    m.menu_name = #{name},
+                </if>
+                <if test="link  != null">
+                    m.menu_link = #{link},
+                </if>
+                <if test="name  != null">
+                    m.menu_name = #{name},
+                </if>
+                <if test="icon  != null">
+                    m.menu_icon = #{icon},
+                </if>
+                <if test="type  != null">
+                    m.menu_type = #{type},
+                </if>
+                <if test="order  != null">
+                    m.menu_order = #{order},
+                </if>
+                <if test="dataStatus  != null">
+                    m.data_status = #{dataStatus},
+                </if>
+                <if test="parentId  != null">
+                    m.menu_parent_id = #{parentId},
+                </if>
+                <if test="type  != null">
+                    m.menu_type = #{type},
+                </if>
+                m.updated_by = #{updatedBy},
+                m.updated_time = now()
+            </set>
+            WHERE
+                m.menu_id = #{id}
+        </update>
+
+        <select id="findFirstBackwardMenu" parameterType="java.util.Map" resultMap="baseMenuMap">
+            select
+            *
+            from menu m
+            where
+            <![CDATA[
+              m.menu_order > #{order}
+            ]]>
+            AND
+            m.menu_parent_id = #{parentId}
+            order BY
+            m.menu_order asc
+            limit 1
+        </select>
+
+        <select id="findFirstForwardMenu" parameterType="java.util.Map" resultMap="baseMenuMap">
+            select
+            *
+            from menu m
+            where
+            <![CDATA[
+              m.menu_order < #{order}
+            ]]>
+            AND
+            m.menu_parent_id = #{parentId}
+            order BY
+            m.menu_order desc
+            limit 1
+        </select>
+
+        <select id="findMaxMenuOrder" parameterType="java.util.Map" resultType="java.lang.Integer">
+            select
+            ifnull(max(m.menu_order),0) as maxOrder
+            from menu m
+            where
+            m.menu_parent_id = #{parentId}
         </select>
 </mapper>

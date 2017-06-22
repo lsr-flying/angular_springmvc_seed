@@ -127,6 +127,11 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.7.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.24</version>
+		</dependency>
 
 		<!-- 日志文件管理包 -->
 		<!-- log start -->
@@ -165,6 +170,12 @@
 			<version>1.2.3</version>
 		</dependency>
 		<!-- shiro end-->
+		<!--freemarker-->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.23</version>
+		</dependency>
 	</dependencies>
 	
 	<build>

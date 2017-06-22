@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import lsr.springmvc.model.User;
 import lsr.springmvc.service.UserService;
 
-public class UserTest {
+public class UserServiceTest {
 
 	private UserService userService;
 	

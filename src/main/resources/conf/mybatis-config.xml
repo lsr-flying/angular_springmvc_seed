@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <!-- 命名空间 -->
     <typeAliases>
          <typeAlias alias="User" type="lsr.springmvc.model.User"/> 
+         <typeAlias alias="Menu" type="lsr.springmvc.model.Menu"/>
     </typeAliases>
 
     <!-- 映射map -->

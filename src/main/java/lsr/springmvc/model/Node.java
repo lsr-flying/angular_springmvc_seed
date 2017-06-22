@@ -1,48 +1,69 @@
 package lsr.springmvc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by lsr on 2017/2/8.
  */
-public abstract class TreeNode<T> {
+public abstract class Node<T> {
 
     String id;
-    T parent;
-    List<T> children;
+    int level;
+    String parentId;
+    ArrayList<T> children;
 
-    TreeNode getChildAt(int childIndex);
+    public String getParentId() {
+        return parentId;
+    }
 
-    /**
-     * Returns the number of children <code>TreeNode</code>s the receiver
-     * contains.
-     */
-    int getChildCount();
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
 
-    /**
-     * Returns the parent <code>TreeNode</code> of the receiver.
-     */
-    TreeNode getParent();
+    public  T getChildAt(int childIndex){
+        return this.children.get(childIndex);
+    }
 
-    /**
-     * Returns the index of <code>node</code> in the receivers children.
-     * If the receiver does not contain <code>node</code>, -1 will be
-     * returned.
-     */
-    int getIndex(TreeNode node);
+    public int getChildCount(){
+        if(this.children == null){
+            return 0;
+        }
+        return this.children.size();
+    }
 
-    /**
-     * Returns true if the receiver allows children.
-     */
-    boolean getAllowsChildren();
+    public  boolean isLeaf(){
+        if(children == null){
+            return false;
+        }
+        return this.children.size()==0;
+    }
 
-    /**
-     * Returns true if the receiver is a leaf.
-     */
-    public abstract boolean isLeaf();
+    public String getId() {
+        return id;
+    }
 
-    /**
-     * Returns the children of the receiver as an <code>Enumeration</code>.
-     */
-    public abstract List<TreeNode> children();
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public ArrayList<T> getChildren() {
+        return children;
+    }
+
+    public void setChildren(ArrayList<T> children) {
+        this.children = children;
+    }
+
+    public  List<T> children(){
+        return this.children;
+    }
 }

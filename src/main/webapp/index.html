@@ -10,10 +10,17 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/font-awesome-4.2.0.min.css" />
+		<link rel="stylesheet" href="css/font-awesome-4.2.0.min.css" />
 		<!-- ace styles -->
 		<link rel="stylesheet" href="css/ace.min.css" />
 		<link rel="stylesheet" href="css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="css/ace-skins.min.css" />
+		<link rel="stylesheet" href="css/customStyle.css" />
+
+		<!-- plugin -->
+		<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.min.css">
+		<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.min.css">
+		<link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-plain.min.css">
+		<link rel="stylesheet" href="node_modules/angular-ui-tree/dist/angular-ui-tree.css">
 	</head>
 
 	<body ng-controller="appCtrl">
@@ -117,11 +124,6 @@
 		<script src="js/modules/appModule.js"></script>
 		<script src="js/config.js"></script>
 
-		<script src="js/controllers/appCtrl.js"></script>
-		<script src="js/controllers/authorizationMgtCtrl.js"></script>
-		<script src="js/controllers/userCenterCtrl.js"></script>
-		<script src="js/controllers/components/navBarMenuCtrl.js"></script>
-
 		<!--=========================routes==============================-->
 		<script src="js/routes.js"></script>
 
@@ -138,6 +140,18 @@
 
 		<!--=========================custom directives==============================-->
 		<script src="js/directives/customDirectives.js"></script>
+
+		<!--=========================custom controllers==============================-->
+		<script src="js/controllers/components/navBarMenuCtrl.js"></script>
+		<script src="js/controllers/appCtrl.js"></script>
+		<script src="js/controllers/authorizationMgtCtrl.js"></script>
+		<script src="js/controllers/userCenterCtrl.js"></script>
+		<script src="js/controllers/userListCtrl.js"></script>
+		<script src="js/controllers/navMangtCtrl.js"></script>
+
+		<!--=========================plugins==============================-->
+		<script src="node_modules/ng-dialog/js/ngDialog.min.js"></script>
+		<script src="node_modules/angular-ui-tree/dist/angular-ui-tree.js"></script>
 
 		<script>
 			//opts 可从网站在线制作

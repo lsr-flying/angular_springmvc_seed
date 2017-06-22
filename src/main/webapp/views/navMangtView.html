@@ -1,12 +1,116 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>用户中心</title>
-</head>
-<body>
-    <div>
-        这是用户中心界面！
+<div ng-controller="navMangtCtrl">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <script type="text/ng-template" id="nodes_renderer">
+                <div ui-tree-handle class="tree-node tree-node-content">
+                    <a class="btn btn-success btn-xs " ng-if="menu.children && menu.children .length > 0"  ng-click="toggle(this)">
+                    <span ng-class="{'icon-chevron-down': collapsed,' icon-chevron-up': !collapsed}"></span></a>
+                    <i class="{{menu.icon}}"></i>&nbsp;&nbsp;{{menu.name}}
+                    <span class="btn btn-primary btn-xs icon-plus pull-right" ng-click="appendItem(this)"></span>
+                    <span class="btn btn-success btn-xs icon-remove pull-right" ng-click="removeItem(this)"></span>
+                    <span class="btn btn-success btn-xs icon-edit pull-right" ng-click="updateItem(this)"></span>
+                    <span class="btn btn-success btn-xs icon-circle-arrow-up pull-right" ng-click="forwardItem(this)"></span>
+                    <span class="btn btn-success btn-xs icon-circle-arrow-down pull-right" ng-click="backwardItem(this)"></span>
+                </div>
+                <ol ui-tree-nodes="" ng-model="menu.children" ng-class="{hidden: collapsed}">
+                    <li ng-repeat="menu in menu.children" ui-tree-node ng-include="'nodes_renderer'">
+                    </li>
+                </ol>
+            </script>
+
+            <div class="row" style="padding:0px 20px">
+                    <button class="btn btn-primary btn-sm icon-plus" ng-click="expandAll()">展开所有</button>
+                    <button class="btn btn-primary btn-sm icon-minus" ng-click="collapseAll()">关闭所有</button>
+                    <button type="button" class="btn btn-purple btn-sm" ng-click="clickToOpen()">
+                        添加根节点
+                        <i class="icon-plus icon-on-right bigger-110"></i>
+                    </button>
+                    <span class="input-icon input-icon-right">
+                        <input type="text" class="form-control" id="form-field-icon-1" />
+                        <i class="icon-search blue"></i>
+                    </span>
+            </div>
+
+            <div ui-tree="treeOptions" id="tree-root" class="ng-scope angular-ui-tree" data-drag-enabled="false">
+                <ol ui-tree-nodes ng-model="menuList" class="ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes">
+                    <li ng-repeat="menu in menuList" ui-tree-node  ng-include="'nodes_renderer'" class="ng-scope angular-ui-tree-node" collapsed="true">
+                    </li>
+                </ol>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6" >
+            <div class="row" style="padding:0px 20px">
+                <button class="btn btn-primary btn-sm" ng-click="">生成页面脚本</button>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="text-align: right">
+                    名称
+                </div>
+                <div class="col-md-9">
+                    <input class="input-large" type="text" placeholder="菜单名字" ng-model="navName" />
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="row">
+                <div class="col-md-3" style="text-align: right">
+                    图标
+                </div>
+                <div class="col-md-9">
+            <span class="input-icon input-icon-right">
+                <input type="text" ng-model="navIcon" placeholder="use icon collection"/>
+                <i class="{{navIcon}}"></i>
+            </span>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="row">
+                <div class="col-md-3" style="text-align: right">
+                    链接
+                </div>
+                <div class="col-md-9">
+                    <input class="input-large" type="text" placeholder="链接" ng-model="navLink" />
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="row">
+                <div class="col-md-3" style="text-align: right">
+                    顺序
+                </div>
+                <div class="col-md-9">
+                    <input class="input-large" type="text" placeholder="顺序" ng-model="navOrder" />
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="row">
+                <div class="col-md-3" style="text-align: right">
+                    类型
+                </div>
+                <div class="col-md-9">
+                    <select ng-model="menuType" ng-options="menuType.type_name for menuType in menuTypes"></select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="row">
+                <div class="col-md-3" style="text-align: right">
+                    启用状态
+                </div>
+                <div class="col-md-9">
+                    <label>
+                        <input class="ace ace-switch ace-switch-7" ng-model="dataStatus" ng-true-value="1" ng-false-value="0" type="checkbox" />
+                        <span class="lbl"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;padding:20px 0px;">
+                <button class="btn btn-primary btn-sm" ng-click="updateMenu()">确认</button>
+                <button class="btn btn-primary btn-sm" ng-click="">撤销</button>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+
+</div>
