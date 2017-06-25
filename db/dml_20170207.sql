@@ -11,6 +11,7 @@ CREATE TABLE `menu` (
   `updated_by`  varchar(255) NULL COMMENT '更新人' ,
   `created_time`  datetime NULL COMMENT '创建时间' ,
   `updated_time`  datetime NULL COMMENT '修改时间' ,
+  'data_status'   varchar(1) DEFAULT '0' COMMENT '数据状态,0-停用,1-启用'，
   PRIMARY KEY (`menu_id`)
 )
 ;
