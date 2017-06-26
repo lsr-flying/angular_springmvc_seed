@@ -1,9 +1,11 @@
 package lsr.springmvc.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import lsr.springmvc.model.User;
 import lsr.springmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,8 +25,32 @@ public class UserController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<User> queryUserList(){
-        Map<String,String> param = new HashMap();
-        return userService.getUserList(param);
+    public JSONObject queryUserList(@RequestBody JSONObject requestJSON){
+        return userService.getUserList(requestJSON);
+    }
+
+    @RequestMapping("/detail")
+    @ResponseBody
+    public User queryUserDetail(@RequestBody JSONObject requestJSON){
+        return userService.queryUserDetailById(requestJSON);
+    }
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public int saveUser(@RequestBody JSONObject requestJSON){
+        User user = JSONObject.parseObject(requestJSON.toJSONString(),User.class);
+        return userService.insertUser(user);
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public int updateUser(@RequestBody JSONObject requestJSON){
+        return userService.updateUserById(requestJSON);
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public int deleteUser(@RequestBody JSONObject requestJSON){
+        return userService.deleteUserById(requestJSON);
     }
 }

@@ -9,7 +9,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
          <typeAlias alias="Menu" type="lsr.springmvc.model.Menu"/>
     </typeAliases>
 
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- config params as the following -->
+            <property name="param1" value="value1"/>
+        </plugin>
+    </plugins>
+
     <!-- 映射map -->
     <mappers>
     </mappers>
+
 </configuration>

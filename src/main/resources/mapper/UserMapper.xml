@@ -19,4 +19,31 @@
             from USER
             where 1=1
         </select>
+
+        <select id="queryUserDetailById" parameterType="java.util.Map" resultType="User">
+            select id,state,nickname
+            from USER
+            where
+            id = #{id}
+        </select>
+
+        <update id="updateUserById" parameterType="java.util.Map">
+            UPDATE USER
+            <trim prefix="SET" suffixOverrides=",">
+                <if test="state!=null">
+                    STATE = #{state},
+                </if>
+                <if test="nickname!=null">
+                    NICKNAME = #{nickname},
+                </if>
+            </trim>
+            WHERE
+                id = #{id}
+        </update>
+
+        <delete id="deleteUserById" parameterType="java.util.Map">
+            DELETE FROM USER
+            WHERE
+            id = #{id}
+        </delete>
 </mapper>

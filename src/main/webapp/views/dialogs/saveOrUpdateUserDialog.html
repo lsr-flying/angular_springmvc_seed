@@ -1,0 +1,34 @@
+<div>
+    {{userOperationTypeText}}用户
+    <hr>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            用户昵称
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder=用户昵称
+                   ng-model="nickname" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            状态
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="状态"
+                   ng-model="state" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div style="text-align: right">
+        <button type="button" class="btn btn-purple btn-sm"
+                ng-click="saveOrUpdateUser()">
+            确认
+        </button>
+        <button type="button" class="btn btn-default btn-sm"
+                ng-click="closeThisDialog()">
+            取消
+        </button>
+    </div>
+</div>
