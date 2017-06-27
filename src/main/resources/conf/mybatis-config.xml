@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <typeAliases>
          <typeAlias alias="User" type="lsr.springmvc.model.User"/> 
          <typeAlias alias="Menu" type="lsr.springmvc.model.Menu"/>
+         <typeAlias alias="Role" type="lsr.springmvc.model.Role"/>
     </typeAliases>
 
     <plugins>
