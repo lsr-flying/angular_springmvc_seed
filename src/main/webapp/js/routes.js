@@ -19,6 +19,10 @@ appModule.config(['$routeProvider',function($routeProvider){
             templateUrl: 'views/navMangtView.html',
             controller:'navMangtCtrl'
         })
+        .when('/roleList', {
+            templateUrl: 'views/roleListView.html',
+            controller:'roleListCtrl'
+        })
     ;
 }]);
 

@@ -1,5 +1,6 @@
 package lsr.springmvc.service;
 
+import com.alibaba.fastjson.JSONObject;
 import lsr.springmvc.model.Menu;
 import lsr.springmvc.model.Role;
 
@@ -8,28 +9,28 @@ import java.util.Map;
 
 public interface RoleService {
 
-	String insertRole(Role role);
+	void insertRole(JSONObject param);
 
-	List<Role> getRoleList(Map params);
+	List<Role> getRoleList(JSONObject param);
 
-	Role queryRoleDetailById(String id);
+	Role queryRoleDetailById(JSONObject param);
 
-	Role queryRoleDetailByKey(String key);
+	Role queryRoleDetailByKey(JSONObject param);
 
-	int updateRoleById(Map params);
+	int updateRoleById(JSONObject param);
 
-	int updateRoleByKey(Map params);
+	int updateRoleByKey(JSONObject param);
 
-	int deleteRoleById(String id);
+	int deleteRoleById(JSONObject param);
 
-	int deleteRoleByKey(String key);
+	int deleteRoleByKey(JSONObject param);
 
-	void insertUserRole(Map params);
+	void insertUserRole(JSONObject param);
 
-	int deleteLinkUserRole(Map params);
+	int deleteLinkUserRole(JSONObject param);
 
-	int deleteLinkRole(String roleId);
+	int deleteLinkRole(JSONObject param);
 
-	int deleteLinkUser(String userId);
+	int deleteLinkUser(JSONObject param);
 
 }

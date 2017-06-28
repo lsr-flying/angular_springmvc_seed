@@ -87,19 +87,19 @@
         <update id="updateRoleById" parameterType="java.util.Map">
             UPDATE role
             <trim prefix="SET" suffixOverrides=",">
-                <if test="state!=null">
+                <if test="domainId!=null">
                     domain_id = #{domainId},
                 </if>
-                <if test="nickname!=null">
+                <if test="roleKey!=null">
                     role_key = #{roleKey},
                 </if>
-                <if test="state!=null">
+                <if test="roleName!=null">
                     role_name = #{roleName},
                 </if>
-                <if test="state!=null">
+                <if test="dataStatus!=null">
                     data_status = #{dataStatus},
                 </if>
-                <if test="state!=null">
+                <if test="updatedBy!=null">
                     updated_by = #{updatedBy},
                 </if>
                 updated_time = now()

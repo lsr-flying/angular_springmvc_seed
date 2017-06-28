@@ -1,0 +1,44 @@
+<div>
+    {{roleOperationTypeText}}角色
+    <hr>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            应用系统
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="应用系统"
+                   ng-model="domainId" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            角色主键
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="角色主键"
+                   ng-model="roleKey" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-md-3" style="text-align: right">
+            角色名称
+        </div>
+        <div class="col-md-9">
+            <input class="input-large" type="text" placeholder="角色名称"
+                   ng-model="roleName" />
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div style="text-align: right">
+        <button type="button" class="btn btn-purple btn-sm"
+                ng-click="saveOrUpdateRole()">
+            确认
+        </button>
+        <button type="button" class="btn btn-default btn-sm"
+                ng-click="closeThisDialog()">
+            取消
+        </button>
+    </div>
+</div>
