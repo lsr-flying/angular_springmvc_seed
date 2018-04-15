@@ -179,4 +179,27 @@
         WHERE
             user_id = #{userId}
     </delete>
+
+    <select id="queryUserRole" parameterType="java.util.Map" resultType="Role">
+        SELECT
+        id as id,
+        domain_id as domainId,
+        role_key as roleKey,
+        role_name as roleName,
+        data_status as dataStatus,
+        created_by as createdBy,
+        created_time as createdTime,
+        updated_by as updatedBy,
+        updated_time as updatedTime
+        FROM role r
+        WHERE
+        r.id in (
+           SELECT lnk.role_id
+           FROM link_user_role lnk
+           WHERE
+           lnk.user_id = #{userId}
+        )
+        ORDER BY
+        created_time desc
+    </select>
 </mapper>

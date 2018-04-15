@@ -85,6 +85,21 @@ public class RoleController {
         return ResponseHelper.generateResponseJSON("000","插入成功");
     }
 
+    @RequestMapping("/saveOrUpdateRole")
+    @ResponseBody
+    public JSONObject saveOrUpdateRole(@RequestBody JSONObject requestJSON){
+        roleService.saveOrUpdateRole(requestJSON);
+        return ResponseHelper.generateResponseJSON("000","插入成功");
+    }
+
+    @RequestMapping("/queryUserRole")
+    @ResponseBody
+    public JSONObject queryUserRole(@RequestBody JSONObject requestJSON){
+        return ResponseHelper.generateResponseJSON("000",
+                "查询成功",
+                roleService.queryUserRole(requestJSON));
+    }
+
     @RequestMapping("/deleteLinkUserRole")
     @ResponseBody
     public JSONObject deleteLinkUserRole(@RequestBody JSONObject requestJSON){

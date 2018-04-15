@@ -2438,7 +2438,7 @@ li [class^="icon-"], li [class*=" icon-"], .nav-list li [class^="icon-"], .nav-l
 }
 
 .sidebar-shortcuts-large > .btn {
-    width: 41px;
+    width: 36px;
     line-height: 24px;
     margin-top: -2px;
     padding: 0;

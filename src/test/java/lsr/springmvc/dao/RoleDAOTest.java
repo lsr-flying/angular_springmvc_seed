@@ -105,6 +105,46 @@ public class RoleDAOTest {
     }
 
     @Test
+    public void queryUserRole() throws Exception {
+
+        Map params = new HashMap();
+
+        params.clear();
+        params.put("userId","testUserId");
+        params.put("roleId","testRoleId");
+        roleDAO.deleteLinkUserRole(params);
+
+        Role role = new Role();
+        role.setId("testRoleId");
+        role.setDomainId("01");
+        role.setRoleKey("testRoleKey");
+        role.setRoleName("测试插入");
+        role.setCreatedBy("lsr");
+        roleDAO.insertRole(role);
+
+        params.clear();
+        params.put("id","lnkur010101");
+        params.put("userId","testUserId");
+        params.put("roleId","testRoleId");
+        params.put("createdBy","lsr");
+
+        roleDAO.insertUserRole(params);
+
+        params.clear();
+        params.put("userId","testUserId");
+        List<Role> roles = roleDAO.queryUserRole(params);
+
+        Assert.assertNotEquals(0,roles.size());
+
+        roleDAO.deleteRoleById("testRoleId");
+
+        params.clear();
+        params.put("userId","testUserId");
+        params.put("roleId","testRoleId");
+        roleDAO.deleteLinkUserRole(params);
+    }
+
+    @Test
     public void deleteLinkUserRole() throws Exception {
 
         Map params = new HashMap();

@@ -8,6 +8,7 @@ import lsr.springmvc.service.RoleService;
 import lsr.springmvc.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -68,6 +69,31 @@ public class RoleServiceImpl implements RoleService {
         String id = UUIDUtil.getUUID();
         param.put("id",id);
         roleDAO.insertUserRole(param);
+    }
+
+    public void saveOrUpdateRole(JSONObject param) {
+        String userId = param.getString("userId");
+        String createdBy = param.getString("createdBy");
+        roleDAO.deleteLinkUser(userId);
+
+        String roleIdStr = param.getString("roleIds");
+        String[] roleIds = roleIdStr.split(",");
+
+        JSONObject createParam = new JSONObject();
+        createParam.put("userId",userId);
+        createParam.put("createdBy",createdBy);
+
+        for(String roleId:roleIds){
+            if(StringUtils.isEmpty(roleId)){
+                continue;
+            }
+            createParam.put("roleId",roleId);
+            insertUserRole(createParam);
+        }
+    }
+
+    public List<Role> queryUserRole(JSONObject param) {
+        return roleDAO.queryUserRole(param);
     }
 
     public int deleteLinkUserRole(JSONObject param) {

@@ -27,6 +27,8 @@ public interface RoleDAO {
 
 	void insertUserRole(Map params);
 
+	List<Role> queryUserRole(Map params);
+
 	int deleteLinkUserRole(Map params);
 
 	int deleteLinkRole(String roleId);

@@ -1,10 +1,10 @@
 /**
  * Created by LINSHIRUI447 on 2016-09-04.
  */
-appModule.controller("userDetailListCtrl",["$scope","$http","ngDialog",
+appModule.controller("roleAuthCtrl",["$scope","$http","ngDialog",
     function($scope,$http,ngDialog){
 
-    $scope.currentUser={};
+    $scope.currentRole={};
 
     var getList = function(){
 

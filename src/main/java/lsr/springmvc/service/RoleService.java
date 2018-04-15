@@ -27,6 +27,10 @@ public interface RoleService {
 
 	void insertUserRole(JSONObject param);
 
+	void saveOrUpdateRole(JSONObject param);
+
+	List<Role>  queryUserRole(JSONObject param);
+
 	int deleteLinkUserRole(JSONObject param);
 
 	int deleteLinkRole(JSONObject param);

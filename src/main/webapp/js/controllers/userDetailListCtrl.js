@@ -1,11 +1,10 @@
 /**
  * Created by LINSHIRUI447 on 2016-09-04.
  */
-/**
- * Created by LINSHIRUI447 on 2016-09-04.
- */
-appModule.controller("userListCtrl",["$scope","$http","ngDialog",
+appModule.controller("userDetailListCtrl",["$scope","$http","ngDialog",
     function($scope,$http,ngDialog){
+
+    $scope.currentUser={};
 
     var getList = function(){
 
@@ -31,79 +30,71 @@ appModule.controller("userListCtrl",["$scope","$http","ngDialog",
         onChange: function () {
             getList();
         }
-    }
+    };
 
-    $scope.showCreateUserDialog = function(){
-        $scope.userOperationTypeText = "创建";
-        $scope.nickname = "";
-        $scope.state = "";
-        var createUserDialog = ngDialog.open({
-            template: 'views/dialogs/saveOrUpdateUserDialog.html',
-            scope:$scope,
-            className: 'ngdialog-theme-plain',
-            closeByDocument: false,
-            controller:['$scope', function ($scope) {
-                $scope.saveOrUpdateUser = function () {
-                    var userInsert = {};
-                    userInsert.nickname = $scope.nickname;
-                    userInsert.state = $scope.state;
-                    $http({
-                        method: "POST",
-                        url: "user/save",
-                        data: userInsert
-                    }).success(function (data) {
-                        $scope.closeThisDialog();
-                        getList();
-                    });
-                };
-            }]
+    $scope.getList = function(){
+        $http({
+            method:"POST",
+            url:"role/getRoleList",
+            data:{}
+        }).success(function(data){
+            $scope.roleList=data.data;
         });
     };
 
-        $scope.showUpdateUserDialog = function(item){
-            $scope.userOperationTypeText = "编辑";
-            $scope.nickname = item.nickname;
-            $scope.state = item.state;
-            var updateUserDialog = ngDialog.open({
-                template: 'views/dialogs/saveOrUpdateUserDialog.html',
-                scope:$scope,
-                className: 'ngdialog-theme-plain',
-                closeByDocument: false,
-                controller:['$scope', function ($scope) {
-                    $scope.saveOrUpdateUser = function () {
-                        var userUpdate = {};
-                        userUpdate.id = item.id;
-                        userUpdate.nickname = $scope.nickname;
-                        userUpdate.state = $scope.state;
-                        $http({
-                            method: "POST",
-                            url: "user/update",
-                            data: userUpdate
-                        }).success(function (data) {
-                            $scope.closeThisDialog();
-                            getList();
-                        });
-                    };
-                }]
-            });
-        };
 
-    $scope.deleteUser = function(item){
-        layer.confirm('确定要删除当前用户？', {
-            btn: ['删除','取消'], //按钮
-            title: '操作确认'
-        }, function(index){
-            var param = {};
-            param.id = item.id;
-            $http({
-                method:"POST",
-                url:"user/delete",
-                data:param
-            }).success(function(data){
-                getList();
-                layer.close(index);
-            });
+    $scope.getUserRoles = function(user){
+        var qryParam = {};
+        qryParam.userId = user.id;
+        $http({
+            method:"POST",
+            url:"role/queryUserRole",
+            data:qryParam
+        }).success(function(data){
+            var userRoles = data.data;
+            for(var i=0;i<$scope.roleList.length;i++){
+                $scope.roleList[i].isSelected = false;
+                for(var j=0;j<userRoles.length;j++){
+                    if($scope.roleList[i].id==userRoles[j].id){
+                        $scope.roleList[i].isSelected = true;
+                    }
+                }
+            }
         });
+
+
+    };
+
+    $scope.queryUserDetail = function(user){
+        $scope.currentUser = user;
+        $scope.getUserRoles(user);
     }
+
+    $scope.saveOrUpdateUserRole = function(){
+        var qryParam = {};
+        qryParam.userId = $scope.currentUser.id;
+        qryParam.roleIds = "";
+        for(var i=0;i<$scope.roleList.length;i++){
+            if($scope.roleList[i].isSelected){
+                qryParam.roleIds =qryParam.roleIds+","+$scope.roleList[i].id;
+            }
+        }
+        qryParam.createdBy="lsr";
+        $http({
+            method:"POST",
+            url:"role/saveOrUpdateRole",
+            data:qryParam
+        }).success(function(data){
+            layer.msg("执行成功");
+        });
+    };
+
+
+    $scope.revertUserRole = function() {
+        $scope.getUserRoles($scope.currentUser);
+    }
+
+        $scope.getList();
+
 }]);
 

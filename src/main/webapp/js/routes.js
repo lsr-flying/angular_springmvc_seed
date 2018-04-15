@@ -10,9 +10,13 @@ appModule.config(['$routeProvider',function($routeProvider){
         when('/userCenter', {
             templateUrl: 'views/userCenterView.html',
             controller:'userCenterCtrl'
-        }).
-        when('/userList', {
+        })
+        .when('/userList', {
             templateUrl: 'views/userListView.html',
+            controller:'userListCtrl'
+        })
+        .when('/userDetailList', {
+            templateUrl: 'views/userDetailListView.html',
             controller:'userListCtrl'
         })
         .when('/navMangt', {
@@ -22,6 +26,10 @@ appModule.config(['$routeProvider',function($routeProvider){
         .when('/roleList', {
             templateUrl: 'views/roleListView.html',
             controller:'roleListCtrl'
+        })
+        .when('/roleAuth', {
+            templateUrl: 'views/roleAuthView.html',
+            controller:'roleAuthCtrl'
         })
     ;
 }]);

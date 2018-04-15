@@ -1,5 +1,4 @@
-INSERT INTO `menu` 
-VALUES
+INSERT INTO `menu` VALUES
  ('204aa8e9-69c0-4d3c-8f4e-e8785061564b','第二级菜单','#','icon icon-minus','导航栏',2,'7306004a-433e-4e4f-81d0-77d3cebfbcf1',NULL,NULL,NULL,NULL,'1'),
  ('31c8f965-a4a2-4956-96ed-595b47949026','导航栏事例','#','icon icon-search','导航栏',4,'0',NULL,NULL,NULL,'2017-04-07 23:18:40','1'),
  ('5fde942d-5895-4334-8062-474eb30cc904','导航栏管理','#navMangt','icon icon-leaf','导航栏',1,'749e4eaf-e7cd-4596-a105-ec91439182df',NULL,NULL,NULL,'2017-04-07 23:57:32','1'),
